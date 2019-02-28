@@ -21,9 +21,8 @@ int readData(Person myArray[], int size){    // WILL RETURN A INT counter OF NUM
       cout << "Error: data.txt could not open. Closing Program." << endl;
       exit(1);
     }
-
-    do {       //counts num of records
-      myFile >> fName;
+    myFile >> fName;
+    while(!myFile.eof()){
       myFile >> lName;
       myFile >> hours;
       myFile >> rate;
@@ -31,9 +30,9 @@ int readData(Person myArray[], int size){    // WILL RETURN A INT counter OF NUM
       myArray[counter].setFirstName(fName);
       myArray[counter].setPayRate(rate);
       myArray[counter].setHoursWorked(hours);
+      myFile >> fName;
       counter++;
     }
-    while(getline(myFile, line));
 
     myFile.close();
     return counter;
